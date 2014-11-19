@@ -5,25 +5,60 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Angular Simple ToDo</title>
+    <title>Cardapio - Restaurante</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="libs/bootswatch/lumen/bootstrap.css" />
-    <link rel="stylesheet" href="libs/google-code-prettify/bin/prettify.min.css" />
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/style.css">
   </head>
-  <body onload="prettyPrint()">
+  <body onload="prettyPrint()" ng-controller="RestauranteCtrl">
 
-    <main class="container" ng-controller="TasksCtrl">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Cardapio</a>
+        </div>
+        <div class="navbar-collapse collapse">
+       		<ul class="nav navbar-nav navbar-right">
+	          <li ng-show="ambientePublico" class="ng-hide"><a href="#/composicao">Administrativo</a></li>
+	          <li ng-show="!ambientePublico" class="ng-hide"><a href="#/cardapio">Publico</a></li>
+	        </ul>
+	    </div>
+      </div>
+    </div>
 
-      <div ng-include="'views/includes/header.html'"></div>
 
-      <ng-view></ng-view>
+    <div class="container-fluid">
+      <div class="row">
+        
 
-      <div ng-include="'views/includes/footer.html'"></div>
+        <!-- Sidebar -->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li ng-repeat="menu in menuInterno" ng-class="{'active' : menu.nome==selectedMenu.nome}" ng-show="!ambientePublico" class="ng-hide">
+              <a href="#/{{menu.uri}}">{{menu.nome}}</a>
+            </li>
+            <li ng-repeat="menu in eventos" ng-class="{'active' : menu.nome==nomeEvento}" ng-show="ambientePublico" class="ng-hide">
+              <a href="" ng-click="selectEvento(menu.nome, menu.id)">{{menu.nome}}</a>
+            </li>
+          </ul>
+        </div>
 
-    </main>
+        <!-- Main Content -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <ng-view></ng-view>
+        
+        </div>
+      </div>
+      
+    </div>
 
     <!-- dependencies -->
     <script src="libs/jquery/dist/jquery.js"></script>
@@ -41,3 +76,5 @@
 
 </body>
 </html>
+
+

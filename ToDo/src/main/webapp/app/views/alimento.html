@@ -1,0 +1,62 @@
+﻿<h1 class="page-header">Gerenciar alimentos</h1>
+
+<div class="col-md-6 col-sm-6 choose">
+
+	<div class="row">
+		<h3 class="sub-header"><span>{{alimento.id !== null ? 'Editando' : 'Inserindo'}}</span> <small>{{alimento.nome}}</small> <a href="" class="btn btn-default pull-right" ng-click="clearAlimento()">Novo</a></h3>
+	</div>
+
+	<form role="form">
+		<input type="hidden" name="id" ng-model="alimento.id">
+	  <div class="form-group">
+	    <label for="nome">Nome</label>
+	    <input type="text" class="form-control" name="nome" placeholder="Nome do alimento" ng-model="alimento.nome">
+	  </div>					  
+	  <div class="form-group">
+	    <label for="foto">Foto</label>
+	    <!-- <input type="file" name="foto" ng-model="alimento.foto"> -->
+	    <input type="text" class="form-control" name="foto" placeholder="foto do alimento" ng-model="alimento.foto">
+	    <p class="help-block">Utilize fotos com até x de tamanho.</p>
+	  </div>
+	  <div class="form-group">
+	    <label for="valor">valor</label>
+	    <input type="text" class="form-control" name="valor" placeholder="valor do alimento" ng-model="alimento.valor">
+	  </div>
+	  <!-- <div class="checkbox">
+	    <label>
+	      <input type="checkbox" name="ativo"> Ativo
+	    </label>
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" name="recorrente"> Recorrente
+	    </label>
+	  </div> -->
+		<div class="form-group">
+	    <label for="descricao">Descrição</label>
+	    <textarea class="form-control" name="descricao" rows="3" ng-model="alimento.descricao"></textarea>
+	  </div>
+
+
+	  <button type="submit" class="btn btn-primary" ng-click="salvarAlimento()">Salvar</button>
+	</form>
+</div>	
+
+<div class="col-md-6 col-sm-6 choosed">
+	<table class="table table-striped">
+	  <thead>
+	  	<tr>
+	  		<th>Nome</th>
+	  		<th class="text-right">Valor</th>
+	  		<th class="text-right">Ação</th>
+	  	</tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="alimento in alimentos">
+	  		<td>{{alimento.nome}}</td>
+	  		<td class="text-right">R$ {{alimento.valor}}</td>
+	  		<td class="text-right"><a href="" ng-click="editAlimento($index)"><span class="glyphicon glyphicon-pencil"></span></a> | <a href="" ng-click="removeAlimento($index)"><span class="glyphicon glyphicon-remove"></span></a></td>
+	  	</tr>
+	  </tbody>
+	</table>
+</div>

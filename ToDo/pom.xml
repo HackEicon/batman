@@ -132,8 +132,9 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
-					<url>jdbc:h2:file:target/springExample</url>
-					<user>admin</user>
+					<url>jdbc:mysql://localhost:3306/todo</url>
+					<user>root</user>
+					<password>root</password>
 				</configuration>
 			</plugin>
 			<plugin>

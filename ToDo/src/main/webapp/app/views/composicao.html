@@ -1,0 +1,65 @@
+<h1 class="page-header">Compor Cardapio - <small>{{nomeEvento}}</small></h1>
+
+<div class="dropdown pull-right select-eventes">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Eventos
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation" ng-repeat="evento in eventos"><a role="menuitem" tabindex="-1" href="" ng-click="selectEvento(evento.nome, evento.id)">{{evento.nome}}</a></li>
+  </ul>
+</div>
+
+<div class="col-md-6 col-sm-6 choose">
+	<div class="row">
+		<h3 class="sub-header">Disponíveis</h3>
+	</div>
+
+	<div class="col-md-12 col-sm-12" ng-repeat="alimento in alimentos | filter:disponivel">
+		<!-- Pricing list Item -->
+		<div class="pricing-item">
+			<!-- Image -->
+			<a href="#"><img class="img-responsive img-thumbnail" src="app/photos/{{alimento.foto}}" alt=""></a>
+			<!-- Pricing item details -->
+			<div class="pricing-item-details">
+				<!-- Heading -->
+				<h3>{{alimento.nome}}</h3>
+				<!-- Paragraph -->
+				<p>{{Alimento.descricao}}</p>
+				<!-- Buy link -->
+				<a class="btn btn-warning pull-right" href="" ng-click="insereAlimentoCardapio(alimento.id, idEvento)">Inserir <span class="glyphicon glyphicon-arrow-right"></span></a>
+				<div class="clearfix"></div>
+			</div>
+			<!-- Tag -->
+			<span class="hot-tag br-red">${{alimento.valor}}</span>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>	
+
+<div class="col-md-6 col-sm-6 choosed">
+	<div class="row">
+		<h3 class="sub-header">Selecionados</h3>
+	</div>
+
+	<div class="col-md-12 col-sm-12" ng-repeat="alimento in alimentos | filter:indisponivel">
+		<!-- Pricing list Item -->
+		<div class="pricing-item">
+			<!-- Image -->
+			<a href="#"><img class="img-responsive img-thumbnail" src="app/photos/{{alimento.foto}}" alt=""></a>
+			<!-- Pricing item details -->
+			<div class="pricing-item-details">
+				<!-- Heading -->
+				<h3>{{alimento.nome}}</h3>
+				<!-- Paragraph -->
+				<p>{{Alimento.descricao}}</p>
+				<!-- Buy link -->
+				<a class="btn btn-danger pull-right" href="" ng-click="removeAlimentoCardapio(alimento.id, idEvento)"><span class="glyphicon glyphicon-arrow-left"></span> Remover</a>
+				<div class="clearfix"></div>
+			</div>
+			<!-- Tag -->
+			<span class="hot-tag br-red">${{alimento.valor}}</span>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>

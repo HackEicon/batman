@@ -1,0 +1,37 @@
+<h1 class="page-header">Gerenciar eventos</h1>
+
+<div class="col-md-6 col-sm-6 choose">
+
+	<div class="row">
+		<h3 class="sub-header"><span>{{evento.id !== null ? 'Editando' : 'Inserindo'}}</span> <small>{{evento.nome}}</small> <a href="" class="btn btn-default pull-right" ng-click="clearEvento()">Novo</a></h3>
+	</div>
+
+	<form role="form">
+		<input type="hidden" name="id" ng-model="evento.id">
+	  <div class="form-group">
+	    <label for="nome">Nome</label>
+	    <input type="text" class="form-control" name="nome" placeholder="Nome do evento" ng-model="evento.nome">
+	  </div>					  
+
+	  <button type="submit" class="btn btn-primary" ng-click="salvarEvento()">Salvar</button>
+	</form>
+</div>	
+
+<div class="col-md-6 col-sm-6 choosed">
+	<table class="table table-striped">
+	  <thead>
+	  	<tr>
+	  		<th>Nome</th>
+	  		<th class="text-right">Valor</th>
+	  		<th class="text-right">Ação</th>
+	  	</tr>
+	  </thead>
+	  <tbody>
+	  	<tr ng-repeat="evento in eventos">
+	  		<td>{{evento.nome}}</td>
+	  		<td class="text-right">R$ {{evento.valor}}</td>
+	  		<td class="text-right"><a href="" ng-click="editEvento($index)"><span class="glyphicon glyphicon-pencil"></span></a> | <a href="" ng-click="removeEvento($index)"><span class="glyphicon glyphicon-remove"></span></a></td>
+	  	</tr>
+	  </tbody>
+	</table>
+</div>
