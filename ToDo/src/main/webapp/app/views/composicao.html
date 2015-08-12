@@ -1,12 +1,12 @@
-<h1 class="page-header">Compor Cardapio - <small>{{nomeEvento}}</small></h1>
-
+<div ng-controller="RestauranteCtrl">
+<h1 class="page-header">Compor Cardapio - <small>{{eventoSelecionado.nome}}</small></h1>
 <div class="dropdown pull-right select-eventes">
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
     Eventos
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation" ng-repeat="evento in eventos"><a role="menuitem" tabindex="-1" href="" ng-click="selectEvento(evento.nome, evento.id)">{{evento.nome}}</a></li>
+    <li role="presentation" ng-repeat="evento in eventos"><a role="menuitem" tabindex="-1" href="" ng-click="selectEvento(evento.nome, evento.id, evento)">{{evento.nome}}</a></li>
   </ul>
 </div>
 
@@ -15,7 +15,7 @@
 		<h3 class="sub-header">Disponíveis</h3>
 	</div>
 
-	<div class="col-md-12 col-sm-12" ng-repeat="alimento in alimentos | filter:disponivel">
+	<div class="col-md-12 col-sm-12" ng-repeat="alimento in alimentos | filterNaoSelecionados:idEvento">
 		<!-- Pricing list Item -->
 		<div class="pricing-item">
 			<!-- Image -->
@@ -25,9 +25,9 @@
 				<!-- Heading -->
 				<h3>{{alimento.nome}}</h3>
 				<!-- Paragraph -->
-				<p>{{Alimento.descricao}}</p>
+				<p>{{alimento.descricao}}</p>
 				<!-- Buy link -->
-				<a class="btn btn-warning pull-right" href="" ng-click="insereAlimentoCardapio(alimento.id, idEvento)">Inserir <span class="glyphicon glyphicon-arrow-right"></span></a>
+				<a class="btn btn-warning pull-right" href="" ng-click="insereAlimentoCardapio(alimento)">Inserir <span class="glyphicon glyphicon-arrow-right"></span></a>
 				<div class="clearfix"></div>
 			</div>
 			<!-- Tag -->
@@ -42,7 +42,7 @@
 		<h3 class="sub-header">Selecionados</h3>
 	</div>
 
-	<div class="col-md-12 col-sm-12" ng-repeat="alimento in alimentos | filter:indisponivel">
+	<div class="col-md-12 col-sm-12" ng-repeat="alimento in alimentos | filterSelecionados:idEvento">
 		<!-- Pricing list Item -->
 		<div class="pricing-item">
 			<!-- Image -->
@@ -54,7 +54,7 @@
 				<!-- Paragraph -->
 				<p>{{Alimento.descricao}}</p>
 				<!-- Buy link -->
-				<a class="btn btn-danger pull-right" href="" ng-click="removeAlimentoCardapio(alimento.id, idEvento)"><span class="glyphicon glyphicon-arrow-left"></span> Remover</a>
+				<a class="btn btn-danger pull-right" href="" ng-click="removeAlimentoCardapio(alimento)"><span class="glyphicon glyphicon-arrow-left"></span> Remover</a>
 				<div class="clearfix"></div>
 			</div>
 			<!-- Tag -->
@@ -62,4 +62,5 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
+</div>
 </div>

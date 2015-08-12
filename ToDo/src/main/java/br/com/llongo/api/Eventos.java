@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -47,7 +48,7 @@ public class Eventos {
     }
 	
 	@RequestMapping(method = RequestMethod.POST,headers="Accept=application/json")
-	public ResponseEntity<Evento> creatEvento(Evento evento, UriComponentsBuilder builder){
+	public ResponseEntity<Evento> creatEvento(@RequestBody Evento evento, UriComponentsBuilder builder){
 		Evento save = eventoRepository.save(evento);
 		HttpHeaders headers = new HttpHeaders();
         headers.setLocation(
@@ -57,7 +58,7 @@ public class Eventos {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT,headers="Accept=application/json")
-	public ResponseEntity<Evento> updateEvento(Evento evento, UriComponentsBuilder builder){
+	public ResponseEntity<Evento> updateEvento(@RequestBody Evento evento, UriComponentsBuilder builder){
 		Evento save = eventoRepository.save(evento);
 		HttpHeaders headers = new HttpHeaders();
         headers.setLocation(

@@ -13,23 +13,23 @@ angular
         templateUrl: function (params) {
           return 'views/' + params.menu + '.html';
         }
-      });
-      // .when('/cardapio', {
-      //   templateUrl: 'views/cardapio.html',
-      //   controller: 'RestauranteCtrl'
-      // })
-      // .when('/composicao', {
-      //   templateUrl: 'views/composicao.html',
-      //   controller: 'RestauranteCtrl'
-      // })
-      // .when('/alimento', {
-      //   templateUrl: 'views/alimento.html',
-      //   controller: 'RestauranteCtrl'
-      // })
-      // .when('/evento', {
-      //   templateUrl: 'views/evento.html',
-      //   controller: 'RestauranteCtrl'
-      // });
+      })
+       .when('/cardapio', {
+         templateUrl: 'views/cardapio.html',
+         controller: 'RestauranteCtrl'
+       })
+       .when('/composicao', {
+         templateUrl: 'views/composicao.html',
+         controller: 'RestauranteCtrl'
+       })
+       .when('/alimento', {
+         templateUrl: 'views/alimento.html',
+         controller: 'RestauranteCtrl'
+       })
+       .when('/evento', {
+         templateUrl: 'views/evento.html',
+         controller: 'RestauranteCtrl'
+       });
       // .when('/tasks', {
       //   templateUrl: 'views/tasks.html'
       // })

@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,7 @@ public class Alimentos {
     }
 	
 	@RequestMapping(method = RequestMethod.POST,headers="Accept=application/json")
-	public ResponseEntity<Alimento> creatAlimento(Alimento alimento, UriComponentsBuilder builder){
+	public ResponseEntity<Alimento> creatAlimento(@RequestBody Alimento alimento, UriComponentsBuilder builder){
 		Alimento save = alimentoRepository.save(alimento);
 		HttpHeaders headers = new HttpHeaders();
         headers.setLocation(
@@ -64,7 +65,7 @@ public class Alimentos {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT,headers="Accept=application/json")
-	public ResponseEntity<Alimento> updateAlimento(Alimento alimento, UriComponentsBuilder builder){
+	public ResponseEntity<Alimento> updateAlimento(@RequestBody Alimento alimento, UriComponentsBuilder builder){
 		Alimento save = alimentoRepository.save(alimento);
 		HttpHeaders headers = new HttpHeaders();
         headers.setLocation(

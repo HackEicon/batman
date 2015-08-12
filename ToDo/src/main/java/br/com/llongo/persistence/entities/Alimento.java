@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,9 +38,11 @@ public class Alimento implements Serializable {
 	private Boolean recorrente;
 	@Column
 	private String descricao;
+	@Column
+	private String categoria;
 	
 	
-	 @ManyToMany(fetch=FetchType.EAGER)
+	 @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	 @JoinTable(name = "alimento_evento", joinColumns = @JoinColumn(name = "alimento_id"), 
 	 inverseJoinColumns = @JoinColumn(name = "evento_id"))
 	private Set<Evento> eventos = new HashSet<Evento>();
@@ -95,7 +98,7 @@ public class Alimento implements Serializable {
 	}
 	
 	public Alimento(String nome, String foto, Float valor,
-			Boolean ativo, Boolean recorrente, String descricao) {
+			Boolean ativo, Boolean recorrente, String descricao,String categoria) {
 		super();
 		this.nome = nome;
 		this.foto = foto;
@@ -103,6 +106,13 @@ public class Alimento implements Serializable {
 		this.ativo = ativo;
 		this.recorrente = recorrente;
 		this.descricao = descricao;
+		this.categoria = categoria;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	
 }

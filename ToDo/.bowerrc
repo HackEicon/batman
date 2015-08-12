@@ -1,4 +1,6 @@
 {
  	"directory": "src/main/webapp/libs",
-	"json": "bower.json"
+	"json": "bower.json",
+	"proxy":"http://172.16.160.150:8080",
+"https-proxy":"http://172.16.160.150:8080"
 }

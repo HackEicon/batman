@@ -1,4 +1,4 @@
-USE todo;
+USE restaurante;
 CREATE TABLE Task (
  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  title VARCHAR(100) NOT NULL,
@@ -10,6 +10,7 @@ CREATE TABLE Task (
 CREATE TABLE alimento (
  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  nome VARCHAR(100) NOT NULL,
+ categoria VARCHAR(100) NOT NULL,
  foto VARCHAR(200),
  valor DOUBLE(8,2),
  ativo BOOLEAN,
@@ -30,3 +31,10 @@ CREATE TABLE alimento_evento (
     FOREIGN KEY (alimento_id) REFERENCES alimento(id) ON UPDATE CASCADE,  
     FOREIGN KEY (evento_id) REFERENCES evento(id) ON UPDATE CASCADE
 );  
+--drop table alimento_evento;
+--drop table evento;
+--drop table alimento;
+--drop table schema_version;
+--drop table task;
+
+

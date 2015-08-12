@@ -1,5 +1,5 @@
 ﻿<h1 class="page-header">Gerenciar alimentos</h1>
-
+<div ng-controller="RestauranteCtrl">
 <div class="col-md-6 col-sm-6 choose">
 
 	<div class="row">
@@ -22,6 +22,14 @@
 	    <label for="valor">valor</label>
 	    <input type="text" class="form-control" name="valor" placeholder="valor do alimento" ng-model="alimento.valor">
 	  </div>
+	  
+	  <div class="form-group">
+	    <label for="valor">Categoria</label><br>
+		<select ng-model="alimento.categoria">
+		 <option value="pratos">Pratos</option>
+		 <option value="bebidas">Bebidas</option>
+		</select>
+		</div>
 	  <!-- <div class="checkbox">
 	    <label>
 	      <input type="checkbox" name="ativo"> Ativo
@@ -48,6 +56,7 @@
 	  	<tr>
 	  		<th>Nome</th>
 	  		<th class="text-right">Valor</th>
+	  		<th class="text-right">Categoria</th>
 	  		<th class="text-right">Ação</th>
 	  	</tr>
 	  </thead>
@@ -55,8 +64,10 @@
 	  	<tr ng-repeat="alimento in alimentos">
 	  		<td>{{alimento.nome}}</td>
 	  		<td class="text-right">R$ {{alimento.valor}}</td>
+	  		<td class="text-right">{{alimento.categoria}}</td>
 	  		<td class="text-right"><a href="" ng-click="editAlimento($index)"><span class="glyphicon glyphicon-pencil"></span></a> | <a href="" ng-click="removeAlimento($index)"><span class="glyphicon glyphicon-remove"></span></a></td>
 	  	</tr>
 	  </tbody>
 	</table>
+</div>
 </div>

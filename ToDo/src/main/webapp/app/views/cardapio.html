@@ -1,26 +1,114 @@
-<h1 class="page-header">Cardapio do dia - <small>Almoço</small></h1>
+<div ng-controller="RestauranteCtrl">
+<style>
+	@font-face {
+	font-family: "bebas";
+	src: url("app/fontes/bebasneue-bold.eot");
+	src: url("app/fontes/bebasneue-bold.eot#iefix") format("embedded-opentype"),
+	url("app/fontes/bebasneue-bold.woff") format("woff"),
+	url("app/fontes/bebasneue-bold.ttf") format("truetype"),
+	url("app/fontes/bebasneue-bold.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
 
-        
+font{
+	font-size:24px;
+	font-weight:bold;
+}
 
-<div class="col-md-12 col-sm-12">
-	
-	<div class="col-md-6 col-sm-12 col-xs-12" ng-repeat="alimento in alimentos | filter:indisponivel">
-		<!-- Pricing list Item -->
-		<div class="pricing-item">
-			<!-- Image -->
-			<a href="#"><img class="img-responsive img-thumbnail" src="app/photos/{{alimento.foto}}" alt=""></a>
-			<!-- Pricing item details -->
-			<div class="pricing-item-details">
-				<!-- Heading -->
-				<h3>{{alimento.nome}}</h3>
-				<!-- Paragraph -->
-				<p>{{alimento.descricao}}</p>
-				<div class="clearfix"></div>
-			</div>
-			<!-- Tag -->
-			<span class="hot-tag br-red">${{alimento.valor}}</span>
-			<div class="clearfix"></div>
-		</div>
-	</div>
+font.texto{
+	font-size:17px;
+	color:#ffffff;
+	letter-spacing:1.8px;
+	text-transform:uppercase;
+};
 
+</style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="dropdown pull-right select-eventes">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Eventos
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation" ng-repeat="evento in eventos"><a role="menuitem" tabindex="-1" href="" ng-click="selectEvento(evento.nome, evento.id, evento)">{{evento.nome}}</a></li>
+  </ul>
+</div>
+<table width="600" height="1179" border="0" align="center" cellpadding="0" cellspacing="0" id="Tabela_01">
+	<tr>
+		<td valign="top">
+			<img src="app/images/img1.jpg" width="600" height="351" alt="" border="0" align="left" style="display:block; margin:0;"></td>
+	</tr>
+	<tr>
+		<td valign="top" height="312" width="600" style="background-image:url(app/images/img2.jpg);">
+        	<table width="266" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr ng-repeat="alimento in alimentos | filterSelecionados:idEventos">
+      <td width="30"><font face="bebas" color="#f3e169">01</font></td>
+      <td width="66"><font face="bebas" class="texto">.............</font></td>
+      <td width="162"><font face="bebas" class="texto">{{alimento.nome}}</font></td>
+    </tr>
+    
+  </tbody>
+</table>
+
+	  </td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<img src="app/images/img3.jpg" width="600" height="46" alt="" border="0" align="left" style="display:block; margin:0;"></td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<img src="app/images/img4.jpg" width="600" height="183" alt="" border="0" align="left" style="display:block; margin:0;"></td>
+	</tr>
+	<tr>
+		<td valign="top" height="287" width="600" style="background-image:url(app/images/img5.jpg)">
+        	
+            <table width="350" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tbody>
+  <tr>
+      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="29"><font face="bebas" color="#f3e169">01</font></td>
+      <td width="73"><font face="bebas" class="texto">.............</font></td>
+      <td width="149"><font face="bebas" class="texto">NOME DA BEBIDA</font></td>
+      <td width="99">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><font face="bebas" color="#f3e169">02</font></td>
+      <td><font face="bebas" class="texto">.............</font></td>
+      <td><font face="bebas" class="texto">NOME DA BEBIDA</font></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><font face="bebas" color="#f3e169">03</font></td>
+      <td><font face="bebas" class="texto">.............</font></td>
+      <td><font face="bebas" class="texto">NOME DA BEBIDA</font></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><font face="bebas" color="#f3e169">04</font></td>
+      <td><font face="bebas" class="texto">.............</font></td>
+      <td><font face="bebas" class="texto">NOME DA BEBIDA</font></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><font face="bebas" color="#f3e169">05</font></td>
+      <td><font face="bebas" class="texto">.............</font></td>
+      <td><font face="bebas" class="texto">NOME DA BEBIDA</font>;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+            
+      </td>
+	</tr>
+</table>
 </div>

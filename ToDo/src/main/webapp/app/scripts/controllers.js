@@ -101,21 +101,13 @@ angular
     ];
 
     $scope.getEventos = function(callback){
-      $http.get('http://localhost:8080/api/eventos').success(function(data){
+      $http.get('api/eventos').success(function(data){
         $scope.eventos = data;
         callback();
       });
     }
 
-    $scope.selectEvento = function(nomeEvento, idEvento){
-      if(typeof nomeEvento === 'undefined'){
-        $scope.nomeEvento = $scope.eventos[0].nome;
-        $scope.idEvento = $scope.eventos[0].id;
-      }else{
-        $scope.nomeEvento = nomeEvento;
-        $scope.idEvento = idEvento;
-      }
-    }
+    
 
     
     /*
@@ -141,17 +133,17 @@ angular
     }
 
     $scope.getAlimentos = function(callback){
-      // $http.get('http://localhost:8080/api/alimentos').success(function(data){
-      //   $scope.alimentos = data;
-      //   callback();
-      // });
-      $scope.alimentos = [
-        { id: 1, nome: 'Nome do alimento 1', foto: 'dish1.jpg', valor: '9,99', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
-        { id: 2, nome: 'Nome do alimento 2', foto: 'dish2.jpg', valor: '10,99', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
-        { id: 3, nome: 'Nome do alimento 3', foto: 'dish3.jpg', valor: '13,30', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
-        { id: 4, nome: 'Nome do alimento 4', foto: 'dish4.jpg', valor: '15,00', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
-        { id: 5, nome: 'Nome do alimento 5', foto: 'dish13.jpg', valor: '1,99', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'}
-      ];
+       $http.get('api/alimentos').success(function(data){
+         $scope.alimentos = data;
+//         callback();
+       });
+//      $scope.alimentos = [
+//        { id: 1, nome: 'Nome do alimento 1', foto: 'dish1.jpg', valor: '9,99', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
+//        { id: 2, nome: 'Nome do alimento 2', foto: 'dish2.jpg', valor: '10,99', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
+//        { id: 3, nome: 'Nome do alimento 3', foto: 'dish3.jpg', valor: '13,30', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
+//        { id: 4, nome: 'Nome do alimento 4', foto: 'dish4.jpg', valor: '15,00', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'},
+//        { id: 5, nome: 'Nome do alimento 5', foto: 'dish13.jpg', valor: '1,99', descricao: 'Descrição do produto, composição da refeição ou outra informação relevante.'}
+//      ];
   
     }
 
@@ -162,9 +154,9 @@ angular
     $scope.removeAlimento = function(index){
       var confirma = confirm("Realmente deseja remover '"+$scope.alimentos[index].nome+"'");
       if(confirma){
-        // $http.delete('http://localhost:8080/api/alimentos'+$scope.alimentos[index].id).success(function(data){
-        //   $scope.alimentos.splice(index);
-        // });
+         $http.delete('api/alimentos/'+$scope.alimentos[index].id).success(function(data){
+           $scope.alimentos.splice(index);
+         });
         $scope.alimentos.splice(index);
       }
     }
@@ -178,25 +170,22 @@ angular
     }
 
     $scope.insereAlimento = function(alimento){
-      // $http.post('http://localhost:8080/api/alimentos', alimento).success(function(data){
-      //   $scope.alimentos = data;
-      //   $scope.alimentos.push(data);
-      // });
-      alimento.id = $scope.alimentos[$scope.alimentos.length - 1].id + 1;  //comentar quando gerando pelo banco
-      $scope.alimentos.push(alimento);
+       $http.post('api/alimentos', alimento).success(function(data){
+         
+         $scope.alimentos.push(data);
+       });
+//      alimento.id = $scope.alimentos[$scope.alimen/tos.length - 1].id + 1;  //comentar quando gerando pelo banco
+//      $scope.alimentos.push(alimento);
     }
 
     $scope.atualizaAlimento = function(alimento){
-      // $http.put('http://localhost:8080/api/alimentos', alimento).success(function(data){
-      //   $scope.alimentos = data;
-      //   $scope.alimentos.push(data);
-      // });
-      for (var i in $scope.alimentos) {
-         if ($scope.alimentos[i].id == alimento.id) {
-            $scope.alimentos[i] = alimento;
-            break; //Stop this loop, we found it!
-         }
-       }
+       return $http.put('api/alimentos', alimento);
+//      for (var i in $scope.alimentos) {
+//         if ($scope.alimentos[i].id == alimento.id) {
+//            $scope.alimentos[i] = alimento;
+//            break; //Stop this loop, we found it!
+//         }
+//       }
     }
 
 
@@ -221,8 +210,9 @@ angular
     }
 
     $scope.getEventos = function(callback){
-      $http.get('http://localhost:8080/api/eventos').success(function(data){
+      $http.get('api/eventos').success(function(data){
         $scope.eventos = data;
+        $scope.eventoSelecionado = $scope.eventos[0];
         callback();
       });
       // $scope.eventos = [
@@ -239,9 +229,9 @@ angular
     $scope.removeEvento = function(index){
       var confirma = confirm("Realmente deseja remover '"+$scope.eventos[index].nome+"'");
       if(confirma){
-        // $http.delete('http://localhost:8080/api/eventos'+$scope.eventos[index].id).success(function(data){
-        //   $scope.eventos.splice(index);
-        // });
+         $http.delete('api/eventos/'+$scope.eventos[index].id).success(function(data){
+           $scope.eventos.splice(index);
+         });
         $scope.eventos.splice(index);
       }
     }
@@ -255,19 +245,18 @@ angular
     }
 
     $scope.insereEvento = function(evento){
-      // $http.post('http://localhost:8080/api/eventos', evento).success(function(data){
-      //   $scope.eventos = data;
-      //   $scope.eventos.push(data);
-      // });
-      evento.id = $scope.eventos[$scope.eventos.length - 1].id + 1;  //comentar quando gerando pelo banco
+       $http.post('api/eventos', evento).success(function(data){
+         $scope.eventos.push(data);
+       });
+//      evento.id = $scope.eventos[$scope.eventos.length - 1].id + 1;  //comentar quando gerando pelo banco
       $scope.eventos.push(evento);
     }
 
     $scope.atualizaEvento = function(evento){
-      // $http.put('http://localhost:8080/api/eventos', evento).success(function(data){
-      //   $scope.eventos = data;
-      //   $scope.eventos.push(data);
-      // });
+       $http.put('api/eventos', evento).success(function(data){
+         
+         $scope.eventos.push(data);
+       });
       for (var i in $scope.eventos) {
          if ($scope.eventos[i].id == evento.id) {
             $scope.eventos[i] = evento;
@@ -325,38 +314,27 @@ angular
       return a;
     };
 
-    $scope.idEvento = 1;
 
     $scope.alimentos = [
-      {id: 1, nome: 'nome 1'},
-      {id: 2, nome: 'nome 2'},
-      {id: 3, nome: 'nome 3'},
-      {id: 4, nome: 'nome 4'},
-      {id: 5, nome: 'nome 5'}
+     
     ]
 
     $scope.cardapio = [
-      {alimentoId: 1, eventoId: 1},
-      {alimentoId: 2, eventoId: 2},
-      {alimentoId: 3, eventoId: 1},
-      {alimentoId: 4, eventoId: 2}
+     
     ];
 
-     $scope.insereAlimentoCardapio = function(alimentoId, eventoId){
-      $scope.cardapio.push({
-        alimentoId: alimentoId,
-        eventoId: eventoId
-      });
+     $scope.insereAlimentoCardapio = function(alimento){
+    	 alimento.eventos.push($scope.eventoSelecionado);
+    	 $scope.atualizaAlimento(alimento)
+	    	 .success(function(data){
+	         });
     }
 
-    $scope.removeAlimentoCardapio = function(alimentoId, eventoId){
-      console.log($scope.cardapio);
-      for (var i in $scope.cardapio) {
-
-         if ($scope.cardapio[i].eventoId === eventoId && $scope.cardapio[i].alimentoId === alimentoId) {
-            $scope.cardapio.splice(i, 1);
-         }
-      }
+    $scope.removeAlimentoCardapio = function(alimento){
+            alimento.eventos.splice(alimento.eventos.indexOf($scope.eventoSelecionado), 1);
+            $scope.atualizaAlimento(alimento)
+	            .success(function(data){
+	            });
     }
 
     $scope.filtraAlimentosDisponiveisCardapio = function(){
@@ -375,7 +353,17 @@ angular
       }
       return alimentosId.diff(alimentosNoEventoAtual);
     };
-
+    $scope.selectEvento = function(nomeEvento, idEvento, evento){
+        if(typeof nomeEvento === 'undefined'){
+          $scope.nomeEvento = $scope.eventos[0].nome;
+          $scope.idEvento = $scope.eventos[0].id;
+        }else{
+          $scope.nomeEvento = nomeEvento;
+          $scope.idEvento = idEvento;
+          $scope.eventoSelecionado = evento;
+        }
+        $scope.filtraAlimentosNaoDisponiveisCardapio();
+      };
     $scope.filtraAlimentosNaoDisponiveisCardapio = function(){
       var alimentosNoEventoAtual = [];
       //Cria um array com os alimentos que não estão no Cardapio de outro evento
@@ -429,45 +417,31 @@ angular
     $scope.getEventos($scope.selectEvento);
 
     $scope.getAlimentos();
+    $scope.filterPratos =function(alimento) {
+    	return alimento.eventos.id.match(idEvento);
+    };
 
-  }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }])
+  .filter('filterSelecionados', function($filter){
+    return function(list, idEvento, element){
+    	var ret = [];
+    	
+    	angular.forEach(list, function(val){
+    		if($filter("filter")(val.eventos, {id: idEvento}).length > 0)
+    			ret.push(val);
+    	});
+    	
+    	return ret;
+    };
+  }).filter('filterNaoSelecionados', function($filter){
+    return function(list, idEvento, element){
+    	var ret = [];
+    	
+    	angular.forEach(list, function(val){
+    		if($filter("filter")(val.eventos, {id: idEvento}).length == 0)
+    			ret.push(val);
+    	});
+    	
+    	return ret;
+    };
+});
